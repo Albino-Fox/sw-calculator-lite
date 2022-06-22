@@ -1,0 +1,99 @@
+﻿<Window x:Class="Calculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculator"
+        mc:Ignorable="d"
+        Title="Calculator" Height="323" Width="228">
+    <Grid>
+        <Menu x:Name="stripMenuAnalog" VerticalAlignment="Top" HorizontalAlignment="Left" Background="White">
+            <MenuItem Header="View">
+                <MenuItem Header="Standard"/>
+                <Separator/>
+                <MenuItem Header="History" IsCheckable="True"/>
+                <MenuItem Header="Digit grouping" IsCheckable="True"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Copy"/>
+                <MenuItem Header="Paste"/>
+                <Separator/>
+                <MenuItem Header="History">
+                    <MenuItem Header="Copy history"/>
+                    <MenuItem Header="Edit"/>
+                    <MenuItem Header="Cancel edit"/>
+                    <MenuItem Header="Clear"/>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="View help"/>
+                <Separator/>
+                <MenuItem Header="About calculator"/>
+            </MenuItem>
+        </Menu>
+        <Grid x:Name="gridContent" HorizontalAlignment="Center" Height="247" VerticalAlignment="Bottom" Width="190" Margin="0,0,0,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="11*"/>
+                <RowDefinition Height="17*"/>
+                <RowDefinition Height="16*"/>
+                <RowDefinition Height="16*"/>
+                <RowDefinition Height="16*"/>
+                <RowDefinition Height="16*"/>
+                <RowDefinition Height="16*"/>
+                <RowDefinition Height="16*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="2" Grid.Column="1" Margin="3,3,3,3">MR</Button>
+            <Button Grid.Row="2" Grid.Column="2" Margin="3,3,3,3">MS</Button>
+            <Button Grid.Row="2" Grid.Column="3" Margin="3,3,3,3">M+</Button>
+            <Button Grid.Row="2" Grid.Column="4" Margin="3,3,3,3">M-</Button>
+            <Button Grid.Row="2" Grid.Column="0" Margin="3,3,3,3">MC</Button>
+
+            <Button Grid.Row="3" Grid.Column="0" Margin="3,3,3,3">←</Button>
+            <Button Grid.Row="3" Grid.Column="1" Margin="3,3,3,3">CE</Button>
+            <Button Grid.Row="3" Grid.Column="2" Margin="3,3,3,3">C</Button>
+            <Button Grid.Row="3" Grid.Column="3" Margin="3,3,3,3">±</Button>
+            <Button Grid.Row="3" Grid.Column="4" Margin="3,3,3,3">√</Button>
+
+            <Button Grid.Row="4" Grid.Column="4" Margin="3,3,3,3">%</Button>
+            <Button Grid.Row="4" Grid.Column="0" Margin="3,3,3,3">7</Button>
+            <Button Grid.Row="4" Grid.Column="1" Margin="3,3,3,3">8</Button>
+            <Button Grid.Row="4" Grid.Column="2" Margin="3,3,3,3">9</Button>
+            <Button Grid.Row="4" Grid.Column="3" Margin="3,3,3,3">/</Button>
+
+            <Button Grid.Row="5" Grid.Column="0" Margin="3,3,3,3">4</Button>
+            <Button Grid.Row="5" Grid.Column="1" Margin="3,3,3,3">5</Button>
+            <Button Grid.Row="5" Grid.Column="2" Margin="3,3,3,3">6</Button>
+            <Button Grid.Row="5" Grid.Column="3" Margin="3,3,3,3">*</Button>
+            <Button Grid.Row="5" Grid.Column="4" Margin="3,3,3,3">1/x</Button>
+
+            <Button Grid.Row="6" Grid.Column="0" Margin="3,3,3,3">1</Button>
+            <Button Grid.Row="6" Grid.Column="1" Margin="3,3,3,3">2</Button>
+            <Button Grid.Row="6" Grid.Column="2" Margin="3,3,3,3">3</Button>
+            <Button Grid.Row="6" Grid.Column="3" Margin="3,3,3,3">-</Button>
+            <Button Grid.Row="6" Grid.Column="4" Margin="3,3,3,3" Grid.RowSpan="2">=</Button>
+
+            <Button Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="3,3,3,3">0</Button>
+            <Button Grid.Row="7" Grid.Column="2" Margin="3,3,3,3">.</Button>
+            <Button Grid.Row="7" Grid.Column="3" Margin="3,3,3,3">+</Button>
+
+            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="2" Margin="2,3,2,3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="17*"/>
+                    <RowDefinition Height="33*"/>
+                </Grid.RowDefinitions>
+                <Rectangle Grid.RowSpan="2" Stroke="Black"/>
+                <TextBlock x:Name="textBlockEquationsHistory" HorizontalAlignment="Right" FontSize="11.5" Padding="0,0,0,0" Margin="0,3,5,1" FontFamily="Consolas" Width="266"></TextBlock>
+                <TextBlock x:Name="textBlockEquations" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="23" Padding="0,0,0,0" Margin="0,0,5,0" FontFamily="Consolas"></TextBlock>
+            </Grid>
+        </Grid>
+
+
+    </Grid>
+</Window>
