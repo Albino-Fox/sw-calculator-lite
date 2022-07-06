@@ -1,0 +1,122 @@
+﻿<Window x:Class="Calculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculator"
+        mc:Ignorable="d"
+        Title="Calculator" Height="323" Width="228" KeyDown="Window_KeyDown">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="Black" CornerRadius="1" BorderThickness="0.7">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightSeaGreen"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Menu x:Name="stripMenuAnalog" VerticalAlignment="Top" HorizontalAlignment="Left" Background="White" IsEnabled="False">
+            <MenuItem Header="View">
+                <MenuItem Header="Standard" InputGestureText="Alt+1"/>
+                <Separator/>
+                <MenuItem Header="History" IsCheckable="True" InputGestureText="Ctrl+H"/>
+                <MenuItem Header="Digit grouping" IsCheckable="True"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Copy" InputGestureText="Ctrl+C"/>
+                <MenuItem Header="Paste" InputGestureText="Ctrl+V"/>
+                <Separator/>
+                <MenuItem Header="History">
+                    <MenuItem Header="Copy history"/>
+                    <MenuItem Header="Edit" InputGestureText="F2"/>
+                    <MenuItem Header="Cancel edit" InputGestureText="Esc"/>
+                    <MenuItem Header="Clear" InputGestureText="Ctrl+Shift+D"/>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="View help" InputGestureText="F1"/>
+                <Separator/>
+                <MenuItem Header="About calculator"/>
+            </MenuItem>
+        </Menu>
+        <Grid x:Name="gridContent" HorizontalAlignment="Center" Height="246" VerticalAlignment="Bottom" Width="190" Margin="0,0,0,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="11*"/>
+                <RowDefinition Height="16*"/>
+                <RowDefinition Height="16*"/>
+                <RowDefinition Height="16*"/>
+                <RowDefinition Height="16*"/>
+                <RowDefinition Height="16*"/>
+                <RowDefinition Height="16*"/>
+                <RowDefinition Height="16*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnMClear" Grid.Row="2" Grid.Column="0" Margin="3,3,3,3" IsTabStop="False" Focusable="False" Click="btnMClear_Click">MC</Button>
+            <Button x:Name="btnMReveal" Grid.Row="2" Grid.Column="1" Margin="3,3,3,3" IsTabStop="False" Focusable="False" Click="btnMReveal_Click">MR</Button>
+            <Button x:Name="btnMSave" Grid.Row="2" Grid.Column="2" Margin="3,3,3,3" IsTabStop="False" Focusable="False" Click="btnMSave_Click">MS</Button>
+            <Button x:Name="btnMAdd" Grid.Row="2" Grid.Column="3" Margin="3,3,3,3" IsTabStop="False" Focusable="False" Click="btnMAdd_Click">M+</Button>
+            <Button x:Name="btnMSub" Grid.Row="2" Grid.Column="4" Margin="3,3,3,3" IsTabStop="False" Focusable="False" Click="btnMSub_Click">M-</Button>
+
+            <Button x:Name="btnBackspace" Grid.Row="3" Grid.Column="0" Margin="3,3,3,3" IsTabStop="False" Focusable="False" Click="btnBackspace_Click">←</Button>
+            <Button x:Name="btnClearEntry" Grid.Row="3" Grid.Column="1" Margin="3,3,3,3" Click="btnClearInput_Click" IsTabStop="False" Focusable="False">CE</Button>
+            <Button x:Name="Clear" Grid.Row="3" Grid.Column="2" Margin="3,3,3,3" Click="btnClear_Click" IsTabStop="False" Focusable="False">C</Button>
+            <Button x:Name="btnNegate" Grid.Row="3" Grid.Column="3" Margin="3,3,3,3" IsTabStop="False" Focusable="False" Click="btnSignInverse_Click">±</Button>
+            <Button x:Name="btnSqrt" Grid.Row="3" Grid.Column="4" Margin="3,3,3,3" IsTabStop="False" Focusable="False" Click="btnSqrt_Click">√</Button>
+
+            <Button x:Name="btnDigit7" Grid.Row="4" Grid.Column="0" Margin="3,3,3,3" Click="btnDigit_Click" IsTabStop="False" Focusable="False">7</Button>
+            <Button x:Name="btnDigit8" Grid.Row="4" Grid.Column="1" Margin="3,3,3,3" Click="btnDigit_Click" IsTabStop="False" Focusable="False">8</Button>
+            <Button x:Name="btnDigit9" Grid.Row="4" Grid.Column="2" Margin="3,3,3,3" Click="btnDigit_Click" IsTabStop="False" Focusable="False">9</Button>
+            <Button x:Name="btnDivide" Grid.Row="4" Grid.Column="3" Margin="3,3,3,3" Click="btnDivide_Click" IsTabStop="False" Focusable="False">/</Button>
+            <Button x:Name="btnPercent" Grid.Row="4" Grid.Column="4" Margin="3,3,3,3" IsTabStop="False" Focusable="False" Click="btnPercent_Click">%</Button>
+
+            <Button x:Name="btnDigit4" Grid.Row="5" Grid.Column="0" Margin="3,3,3,3" Click="btnDigit_Click" IsTabStop="False" Focusable="False">4</Button>
+            <Button x:Name="btnDigit5" Grid.Row="5" Grid.Column="1" Margin="3,3,3,3" Click="btnDigit_Click" IsTabStop="False" Focusable="False">5</Button>
+            <Button x:Name="btnDigit6" Grid.Row="5" Grid.Column="2" Margin="3,3,3,3" Click="btnDigit_Click" IsTabStop="False" Focusable="False">6</Button>
+            <Button x:Name="btnMultiply" Grid.Row="5" Grid.Column="3" Margin="3,3,3,3" Click="btnMultiply_Click" IsTabStop="False" Focusable="False">*</Button>
+            <Button x:Name="btnReciproc" Grid.Row="5" Grid.Column="4" Margin="3,3,3,3" IsTabStop="False" Focusable="False" Click="btnReciproc_Click">1/x</Button>
+
+            <Button x:Name="btnDigit1" Grid.Row="6" Grid.Column="0" Margin="3,3,3,3" Click="btnDigit_Click" IsTabStop="False" Focusable="False">1</Button>
+            <Button x:Name="btnDigit2" Grid.Row="6" Grid.Column="1" Margin="3,3,3,3" Click="btnDigit_Click" IsTabStop="False" Focusable="False">2</Button>
+            <Button x:Name="btnDigit3" Grid.Row="6" Grid.Column="2" Margin="3,3,3,3" Click="btnDigit_Click" IsTabStop="False" Focusable="False">3</Button>
+            <Button x:Name="btnMinus" Grid.Row="6" Grid.Column="3" Margin="3,3,3,3" Click="btnMinus_Click" IsTabStop="False" Focusable="False">-</Button>
+            <Button x:Name="btnCalculate" Grid.Row="6" Grid.Column="4" Margin="3,3,3,3" Grid.RowSpan="2" Click="btnСalculate_Click" IsDefault="True" Focusable="False" IsTabStop="False">=</Button>
+
+            <Button x:Name="btnDigit0" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="3,3,3,3"  Click="btnDigit_Click" IsTabStop="False" Focusable="False">0</Button>
+            <Button x:Name="btnDot" Grid.Row="7" Grid.Column="2" Margin="3,3,3,3" Click="btnDigit_Click" IsTabStop="False" Focusable="False">.</Button>
+            <Button x:Name="btnPlus" Grid.Row="7" Grid.Column="3" Margin="3,3,3,3" Click="btnPlus_Click" IsTabStop="False" Focusable="False">+</Button>
+
+            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="2" Margin="2,3,2,3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="17*"/>
+                    <RowDefinition Height="33*"/>
+                </Grid.RowDefinitions>
+                <Rectangle Grid.RowSpan="2" Stroke="Black"/>
+                <TextBlock x:Name="tbEquationsHistory" HorizontalAlignment="Right" FontSize="11.5" Padding="0,0,0,0" Margin="0,3,5,1" FontFamily="Consolas"></TextBlock>
+                <TextBlock x:Name="tbEquations" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="23" Padding="0,0,0,0" Margin="0,0,5,6" FontFamily="Consolas"></TextBlock>
+                <TextBlock x:Name="tbMemorySign" HorizontalAlignment="Left" Height="15" Margin="6,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="15" FontFamily="Consolas" FontSize="16"></TextBlock>
+            </Grid>
+        </Grid>
+
+
+    </Grid>
+</Window>
